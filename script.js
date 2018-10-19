@@ -22,3 +22,27 @@ var fireObj = {
         });
 	}
 }
+
+$(document).ready(function(){
+	$("#submitusername").click(function(){
+		var username = $("#username").val();
+		if(username.trim() != "")
+		{
+			localStorage.setItem("username", username);
+			window.location.href = "chat.html";
+		}
+	});
+	
+	if($("#addchat").length > 0)
+	{
+		$("#addchat").click(function(){
+			var message = $("#message").val();
+			if(message.trim() != "")
+			{
+				var username = localStorage.getItem("username");
+				fireObj.InsertMessage(username, message);
+			}
+			$("#message").val("");
+		});
+	}
+});
